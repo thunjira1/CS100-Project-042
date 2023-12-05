@@ -1,0 +1,338 @@
+<!--
+  File: index.html
+  Author: CS100 Team
+  Date Created: 23 July 2023
+  Copyright: CSTU
+  Description: HTML code of CSTU Passport that validate with JS
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+    <title>Forms - CSTU Passport</title>
+    <link rel="stylesheet" href="">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        flex-direction: column;
+        background-color: rgb(250, 255, 226);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      .row::after {
+        content: "";
+        clear: both;
+        display: table;
+      }
+
+      a {
+        text-decoration: none;
+        }
+    
+    [class*="col-"] { 
+      float: left;
+      padding: 15px;
+    }
+
+    .header {
+      background-color:#fad900;
+      color: #ffffff;
+      padding: 15px;
+      text-align: center;
+    }
+    .menu ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    .menu li {
+      padding: 8px;
+      margin-bottom: 7px;
+      background-color: #ffc13a;
+      color: #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+    .menu li:hover {
+      background-color: #fad900;
+    }
+    .aside {
+      background-color: #ffa58c;
+      padding: 15px;
+      color: #ffffff;
+      text-align: center;
+      font-size: 14px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); 
+    }
+
+    .form-container {
+        background-color: rgb(250, 255, 226) ;
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+    }
+    
+    /* Center-align the heading and add margin at the bottom */
+    .form-container h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Styling for each form group */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    /* Styling for form group labels */
+    .form-group label {
+      display: block;
+      font-weight: bold;
+    }
+
+    /* Styling for various form input types */
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group select,
+    .form-group textarea,
+    .form-group input[type="datetime-local"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    /* Allow vertical resizing for textareas */
+    .form-group textarea {
+      resize: vertical;
+    }
+
+    /* Styling for select dropdowns */
+    .form-group select {
+      width: 100%;
+    }
+
+    /* Styling for the submit button */
+    .form-group input[type="submit"] {
+      background-color:#4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .form-group small {
+      font-size: 12px;
+      color: #9b9797;
+    }
+
+    .p {
+      font-size: small;
+      font-style: normal;
+      font-weight: bold;
+    }
+
+    .error {
+      color: red;
+      display: block;
+      margin-top: 5px;
+    }
+
+    /* For mobile phones: */
+    [class*="col-"] {
+  width: 100%;
+    }
+
+    @media only screen and (min-width: 600px) {
+      /* For tablets: */
+      .col-s-1 {width: 8.33%;}
+      .col-s-2 {width: 16.66%;}
+      .col-s-3 {width: 25%;}
+      .col-s-4 {width: 33.33%;}
+      .col-s-5 {width: 41.66%;}
+      .col-s-6 {width: 50%;}
+      .col-s-7 {width: 58.33%;}
+      .col-s-8 {width: 66.66%;}
+      .col-s-9 {width: 75%;}
+      .col-s-10 {width: 83.33%;}
+      .col-s-11 {width: 91.66%;}
+      .col-s-12 {width: 100%;}
+    }
+    @media only screen and (min-width: 768px) {
+      /* For desktop: */
+      .col-1 {width: 8.33%;}
+      .col-2 {width: 16.66%;}
+      .col-3 {width: 25%;}
+      .col-4 {width: 33.33%;}
+      .col-5 {width: 41.66%;}
+      .col-6 {width: 50%;}
+      .col-7 {width: 58.33%;}
+      .col-8 {width: 66.66%;}
+      .col-9 {width: 75%;}
+      .col-10 {width: 83.33%;}
+      .col-11 {width: 91.66%;}
+      .col-12 {width: 100%;}
+    }
+
+    .footer {
+      background-color: #3a3932;
+      color: #ffffff;
+      font-size: 12px;
+      padding: 15px;
+      margin: 0;
+      width: 100%;
+      display: flow-root;
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>MyCSTUPassport</h1>
+</div>
+  
+  <div class="row">
+    <div class="col-3 col-s-3 menu">
+      <ul>
+          <li> <a href="../Index.html" >Homepage</a> </li>
+          <li> <a href="../JS/ouractivities.html" >Our activities</a> </li>
+      </ul>
+  </div>
+
+    <!--Form Container-->
+  <div class="form-container">
+        <div class="col-6 col-s-9">
+            <h1 onmouseover="style.color='#4caf50'"
+                onmouseout="style.color='black'">OUR ACTIVITIES</h1>
+            <!-- Main Form -->
+    <form id="myForm" action="#" method="post">
+      <!-- Firstname and Lastname Field -->
+      <div class="form-group">
+        <label for="fullname">Firstname and Lastname</label>
+        <input type="text" id="fullname" name="fullname" placeholder="Firstname Lastname" />
+        <small>Only enter your first name and last name, middle name is not necessary.</small>
+        <span id="fullnameError" class="error"></span>
+      </div>
+
+      <!-- Student ID Field -->
+      <div class="form-group">
+        <label for="studentID">Student ID</label>
+        <input type="text" id="studentID" name="studentID" />
+        <small>Please enter your 10-digit student ID.</small>
+        <span id="studentIDError" class="error"></span>
+      </div>
+
+      <!-- University Email Field -->
+      <div class="form-group">
+        <label for="email">University Email</label>
+        <input type="email" id="email" name="email" placeholder="xxx.yyy@dome.tu.ac.th" />
+        <small>Please provide your university email in the format "xxx.yyy@dome.tu.ac.th".</small>
+        <span id="emailError" class="error"></span>
+      </div>
+
+      <!-- Work/Activity Title Field -->
+      <div class="form-group">
+        <label for="workTitle">Work/Activity Title</label>
+        <input type="text" id="workTitle" name="workTitle" />
+      </div>
+
+      <!-- Type of Work/Activity Field -->
+      <div class="form-group">
+        <label for="activityType">Type of Work/Activity</label>
+        <select id="activityType" name="activityType">
+          <option value="" disabled selected>Select an option</option>
+        </select>
+      </div>
+      <!-- <div class="form-group">
+        <label for="activityType">Type of Work/Activity</label>
+        <select id="activityType" name="activityType">
+          <option value="" disabled selected>Select an option</option>
+          <option value="Course">Course</option>
+          <option value="Activity">Activity</option>
+          <option value="Work">Work</option>
+          <option value="Research">Research</option>
+          <option value="Sports">Sports</option>
+          <option value="Competition">Competition</option>
+          <option value="Computer Science">Computer Science</option>
+        </select>
+      </div> -->
+
+      <!-- Academic Year Field -->
+      <div class="form-group">
+        <label for="academicYear">Academic Year</label>
+        <select id="academicYear" name="academicYear">
+          <option value="" disabled selected>Select an option</option>
+          <option value="2561">2561</option>
+          <option value="2562">2562</option>
+          <option value="2563">2563</option>
+          <option value="2564">2564</option>
+          <option value="2565">2565</option>
+          <option value="2566">2566</option>
+          <option value="2567">2567</option>
+          <option value="2568">2568</option>
+          <option value="2569">2569</option>
+        </select>
+      </div>
+
+      <!-- Semester Field -->
+      <div class="form-group">
+        <label for="semester">Semester</label>
+        <select id="semester" name="semester">
+          <option value="" disabled selected>Select an option</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="Summer">Summer</option>
+        </select>
+      </div>
+
+      <!-- Start Date/Time Field -->
+      <div class="form-group">
+        <label for="startDate">Start Date/Time</label>
+        <input type="datetime-local" id="startDate" name="startDate" />
+      </div>
+
+      <!-- End Date/Time Field -->
+      <div class="form-group">
+        <label for="endDate">End Date/Time</label>
+        <input type="datetime-local" id="endDate" name="endDate" />
+      </div>
+
+      <!-- Location Field -->
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" id="location" name="location" />
+      </div>
+
+      <!-- Description Field -->
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="form-group">
+        <input type="submit" value="Submit" onsubmit="submit()" />
+      </div>
+    </form>
+  </div>
+
+  <!--footer-->
+  <div class="footer">
+    <p>ผู้จัดทำ : ธันจิรา, จุฑาทิพย์</p>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+
+</body>
+</html>
