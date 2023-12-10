@@ -34,6 +34,7 @@ function validateStudentID() {
 
   if (!studentIDPattern.test(studentIDInput.value)) {
     errorElement.textContent = "Please enter a 10-digit Student ID.";
+    alert ("Please enter 10 digit student ID. try again.");
     return false;
   } else {
     errorElement.textContent = ""; // Clear the error message when valid
@@ -99,9 +100,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   populateActivityTypes(activityTypes);
 });
 
-function submit() {
-  alert ("This form was submitted")
-}
 
 // Function to submit the form
 // Function to submit the form
@@ -122,6 +120,7 @@ async function submitForm(event) {
     alert("End datetime should be after the start datetime.");
     return;
   }
+
 
   // Create the data object to send to the backend
   const formData = new FormData(event.target);
