@@ -161,7 +161,7 @@ async function submitForm(event) {
       console.log("Form data submitted successfully!");
       
       //customize the displayed user data
-      const userName = '${data.first_name} ${data.lastname}';
+      const userName = '${data.first_name} ${data.last_name}';
       const userStudentID = data.student_id;
       const userEmail = data.email;
 
@@ -175,6 +175,9 @@ async function submitForm(event) {
       const location = data.location;
       const description = data.description;
 
+      //Reset the form
+      document.getElementById('myform').reset();
+    
       // Format JSON data for display
       const formattedData = Object.entries(responseData.data)
         .map(([key, value]) => `"${key}": "${value}"`)
@@ -183,26 +186,22 @@ async function submitForm(event) {
       // Display success message with formatted data
         alert("Your form has been successfully submitted.");
 
-      document.getElementById("myForm").reset();
-
-
       //display the user data  underneath the form in a styled container
       document.getElementById("resultContainer").innerHTML = `
-       <div class ="result-container">
-         <h2>Submitted user data</h2>
-         <p><strong>Name:</strong>${userName}</p>
-         <p><strong>Student id:</strong>${userStudentID}</p>
-         <p><strong>Email:</strong>${userEmail}</p>
-         <p><strong>Work/Activity Title:</strong>${workTitle}</p>
-         <p><strong>Type of Work/Activity:</strong>${typeOfWork}</p>
-         <p><strong>Academic year:</strong>${academicYear}</p>
-         <p><strong>Semester:</strong>${semester}</p>
-         <p><strong>Start Date/Time:</strong>${startDateTime}</p>
-         <p><strong>End Date/Time:</strong>${endDateTime}</p>
-         <p><strong>Location:</strong>${Location}</p>
-         <p><strong>Description:</strong>${description}</p>
-       </div>`;
-
+      <div class ="result-container">
+        <h2>Submitted user data</h2>
+        <p><strong>Name:</strong>${userName}</p>
+        <p><strong>Student id:</strong>${userStudentID}</p>
+        <p><strong>Email:</strong>${userEmail}</p>
+        <p><strong>Work/Activity Title:</strong>${workTitle}</p>
+        <p><strong>Type of Work/Activity:</strong>${typeOfWork}</p>
+        <p><strong>Academic year:</strong>${academicYear}</p>
+        <p><strong>Semester:</strong>${semester}</p>
+        <p><strong>Start Date/Time:</strong>${startDateTime}</p>
+        <p><strong>End Date/Time:</strong>${endDateTime}</p>
+        <p><strong>Location:</strong>${location}</p>
+        <p><strong>Description:</strong>${description}</p>
+      </div>`;
       
   
     } else {
