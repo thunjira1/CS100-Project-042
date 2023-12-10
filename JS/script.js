@@ -178,10 +178,7 @@ async function submitForm(event) {
       //Reset the form
       document.getElementById('myform').reset();
     
-      // Format JSON data for display
-      const formattedData = Object.entries(responseData.data)
-        .map(([key, value]) => `"${key}": "${value}"`)
-        .join("\n");
+     
 
       // Display success message with formatted data
         alert("Your form has been successfully submitted.");
