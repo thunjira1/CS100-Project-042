@@ -168,20 +168,37 @@ async function submitForm(event) {
         .map(([key, value]) => `"${key}": "${value}"`)
         .join("\n");
 
-    // Display success message with formatted data
-    document.getElementById("result").textContent = responseData.message + "\n" + formattedData;
-    document.getElementById("resultContainer").style.display = "block";
+      // Display success message with formatted data
+      alert("Your form has been successfully submitted!\n" + formattedData);
 
-    document.getElementById("myForm").reset();
-  } else {
-    console.error("Failed to submit form data.");
+    } else {
+      console.error("Failed to submit form data.");
 
-    // Display error message
-    alert("Failed to submit form data. Please try again.");
+      // Display error message
+      alert("Failed to submit form data. Please try again.");
+    }
+  } catch (error) {
+    console.error("An error occurred while submitting form data:", error);
   }
-} catch (error) {
-  console.error("An error occurred while submitting form data:", error);
 }
+
+// Function to display the submitted data
+function displaySubmittedData(data) {
+  // Display the submitted data underneath the form
+  const resultContainer = document.getElementById("resultContainer");
+  resultContainer.style.display = "block";
+  
+  // Create a string with the submitted data
+  const formattedData = Object.entries(data)
+    .map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`)
+    .join("\n");
+
+  // Display the data in the result container
+  resultContainer.innerHTML = `
+    <div class="result-container">
+      <h2>Submitted User Data</h2>
+      ${formattedData}
+    </div>`;
 }
 
 // Event listener for form submission
@@ -190,6 +207,6 @@ document.getElementById("myForm").addEventListener("submit", submitForm);
 // Event listeners for input validation on user input
 document.getElementById("fullname").addEventListener("input", validateName);
 document
-.getElementById("studentID")
-.addEventListener("input", validateStudentID);
+  .getElementById("studentID")
+  .addEventListener("input", validateStudentID);
 document.getElementById("email").addEventListener("input", validateEmail);
