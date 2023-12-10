@@ -160,17 +160,16 @@ async function submitForm(event) {
       const responseData = await response.json();
       console.log("Form data submitted successfully!");
 
-      //Reset the form
-      document.getElementById('myform').reset();
-    
       // Format JSON data for display
       const formattedData = Object.entries(responseData.data)
         .map(([key, value]) => `"${key}": "${value}"`)
         .join("\n");
 
       // Display success message with formatted data
-      alert("Your form has been successfully submitted!\n" + formattedData);
+      document.getElementById("result").textContent = responseData.message + "\n" + formattedData;
+      document.getElementById("resultContainer").style.display = "block";
 
+      document.getElementById("myForm").reset();
     } else {
       console.error("Failed to submit form data.");
 
@@ -180,25 +179,6 @@ async function submitForm(event) {
   } catch (error) {
     console.error("An error occurred while submitting form data:", error);
   }
-}
-
-// Function to display the submitted data
-function displaySubmittedData(data) {
-  // Display the submitted data underneath the form
-  const resultContainer = document.getElementById("resultContainer");
-  resultContainer.style.display = "block";
-  
-  // Create a string with the submitted data
-  const formattedData = Object.entries(data)
-    .map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`)
-    .join("\n");
-
-  // Display the data in the result container
-  resultContainer.innerHTML = `
-    <div class="result-container">
-      <h2>Submitted User Data</h2>
-      ${formattedData}
-    </div>`;
 }
 
 // Event listener for form submission
