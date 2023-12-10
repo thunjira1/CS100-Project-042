@@ -159,48 +159,15 @@ async function submitForm(event) {
     if (response.ok) {
       const responseData = await response.json();
       console.log("Form data submitted successfully!");
-      
-      //customize the displayed user data
-      const userName = '${data.first_name} ${data.last_name}';
-      const userStudentID = data.student_id;
-      const userEmail = data.email;
-
-      //work/Activity detail
-      const workTitle = data.title;
-      const typeOfWork = data.type_of_work_id;
-      const academicYear = data.academic_year +543;
-      const semester = data.semester;
-      const startDateTime = data.start_date;
-      const endDateTime = data.end_date;
-      const location = data.location;
-      const description = data.description;
 
       //Reset the form
       document.getElementById('myform').reset();
     
-     
+      // Format JSON data for display
+      const formattedData = Object.entries(responseData.data)
+        .map(([key, value]) => `"${key}": "${value}"`)
+        .join("\n");
 
-      // Display success message with formatted data
-        alert("Your form has been successfully submitted.");
-
-      //display the user data  underneath the form in a styled container
-      document.getElementById("resultContainer").innerHTML = `
-      <div class ="result-container">
-        <h2>Submitted user data</h2>
-        <p><strong>Name:</strong>${userName}</p>
-        <p><strong>Student id:</strong>${userStudentID}</p>
-        <p><strong>Email:</strong>${userEmail}</p>
-        <p><strong>Work/Activity Title:</strong>${workTitle}</p>
-        <p><strong>Type of Work/Activity:</strong>${typeOfWork}</p>
-        <p><strong>Academic year:</strong>${academicYear}</p>
-        <p><strong>Semester:</strong>${semester}</p>
-        <p><strong>Start Date/Time:</strong>${startDateTime}</p>
-        <p><strong>End Date/Time:</strong>${endDateTime}</p>
-        <p><strong>Location:</strong>${location}</p>
-        <p><strong>Description:</strong>${description}</p>
-      </div>`;
-      
-  
     } else {
       console.error("Failed to submit form data.");
 
@@ -210,6 +177,18 @@ async function submitForm(event) {
   } catch (error) {
     console.error("An error occurred while submitting form data:", error);
   }
+}
+
+function submitForm(event) {
+  event.preventDefault();
+
+  // Assuming you have a function to handle form submission
+  handleSubmitForm(); // Handle the form submission
+  
+  // Process form data and display results
+  document.getElementById("resultContainer").style.display = "block"; // Show the result container
+  // Display results in the container
+  document.getElementById("resultContainer").innerHTML = "<p>Form submitted successfully!</p>";
 }
 
 // Event listener for form submission
