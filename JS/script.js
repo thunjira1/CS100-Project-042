@@ -11,6 +11,10 @@ const config = {
 };
 const port = 8000;
 
+function page() {
+  alert ("welcome to activities form.");
+}
+
 // Function to validate Firstname and Lastname
 function validateName() {
   const fullnameInput = document.getElementById("fullname");
