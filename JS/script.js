@@ -166,7 +166,8 @@ async function submitForm(event) {
         .join("\n");
 
       // Display success message with formatted data
-      alert(responseData.message + "\n" + formattedData);
+      document.getElementById("result").textContent = responseData.message + "\n" + formattedData;
+      document.getElementById("resultContainer").style.display = "block";
 
       document.getElementById("myForm").reset();
     } else {
