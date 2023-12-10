@@ -168,27 +168,20 @@ async function submitForm(event) {
         .map(([key, value]) => `"${key}": "${value}"`)
         .join("\n");
 
-    } else {
-      console.error("Failed to submit form data.");
+    // Display success message with formatted data
+    document.getElementById("result").textContent = responseData.message + "\n" + formattedData;
+    document.getElementById("resultContainer").style.display = "block";
 
-      // Display error message
-      alert("Failed to submit form data. Please try again.");
-    }
-  } catch (error) {
-    console.error("An error occurred while submitting form data:", error);
+    document.getElementById("myForm").reset();
+  } else {
+    console.error("Failed to submit form data.");
+
+    // Display error message
+    alert("Failed to submit form data. Please try again.");
   }
+} catch (error) {
+  console.error("An error occurred while submitting form data:", error);
 }
-
-function submitForm(event) {
-  event.preventDefault();
-
-  // Assuming you have a function to handle form submission
-  handleSubmitForm(); // Handle the form submission
-  
-  // Process form data and display results
-  document.getElementById("resultContainer").style.display = "block"; // Show the result container
-  // Display results in the container
-  document.getElementById("resultContainer").innerHTML = "<p>Form submitted successfully!</p>";
 }
 
 // Event listener for form submission
@@ -197,6 +190,6 @@ document.getElementById("myForm").addEventListener("submit", submitForm);
 // Event listeners for input validation on user input
 document.getElementById("fullname").addEventListener("input", validateName);
 document
-  .getElementById("studentID")
-  .addEventListener("input", validateStudentID);
+.getElementById("studentID")
+.addEventListener("input", validateStudentID);
 document.getElementById("email").addEventListener("input", validateEmail);
